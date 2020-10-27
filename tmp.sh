@@ -24,4 +24,7 @@
 #echo "deb http://download.proxmox.com/debian/ceph-nautilus buster main" | sudo tee /etc/apt/sources.list.d/ceph.list
 
 
-wget -qO - http://download.proxmox.com/debian/proxmox-ve-release-6.x.gpg | sudo apt-key add -
+#wget -qO - http://download.proxmox.com/debian/proxmox-ve-release-6.x.gpg | sudo apt-key add -
+
+wget http://download1.proxmox.com/debian/dists/wheezy/pvetest/binary-amd64/novnc-pve_0.4-7_amd64.deb
+dpkg -i novnc-pve_0.4-7_amd64.deb
