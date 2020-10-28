@@ -1,0 +1,47 @@
+Client
+
+Add the following to /etc/network/interfaces:
+
+# The internal interface on neta
+auto enp0s8
+iface enp0s8 inet static
+    address 192.168.1.11
+    netmask 255.255.255.0
+    network 192.168.1.0
+    broadcast 192.168.1.255
+    post-up route add -net 192.168.0.0 netmask 255.255.0.0 gw 192.168.1.1 dev enp0s8
+    pre-down route del -net 192.168.0.0 netmask 255.255.0.0 gw 192.168.1.1 dev enp0s8
+
+Router
+
+Add the following to /etc/network/interfaces:
+
+# The internal interface on neta
+auto enp0s8
+iface enp0s8 inet static
+    address 192.168.1.1
+    netmask 255.255.255.0
+    network 192.168.1.0
+    broadcast 192.168.1.255
+
+# The internal interface on netb
+auto enp0s9
+iface enp0s9 inet static
+    address 192.168.2.2
+    netmask 255.255.255.0
+    network 192.168.2.0
+    broadcast 192.168.2.255
+
+Server
+
+Add the following to /etc/network/interfaces:
+
+# The internal interface on netb
+auto enp0s8
+iface enp0s8 inet static
+    address 192.168.2.22
+    netmask 255.255.255.0
+    network 192.168.2.0
+    broadcast 192.168.2.255
+    post-up route add -net 192.168.0.0 netmask 255.255.0.0 gw 192.168.2.2 dev enp0s8
+    pre-down route del -net 192.168.0.0 netmask 255.255.0.0 gw 192.168.2.2 dev enp0s8
